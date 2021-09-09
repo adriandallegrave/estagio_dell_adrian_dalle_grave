@@ -51,22 +51,66 @@ class Saude:
             self.ask_input()
 
     def one(self):
-        print("1")
+        f_sum = m_sum = m_count = f_count = 0
 
-    def two(self):
+        i = input("Digite o nome do município: ")
+        i = i.upper()
+
+        for x in self.info:
+            if x['municipio_residencia'] == i:
+                if x['sexo'] == 'MASCULINO':
+                    m_sum += float(x['idade'])
+                    m_count += 1
+                elif x['sexo'] == 'FEMININO':
+                    f_sum += float(x['idade'])
+                    f_count += 1
+
+        if (m_count + f_count) == 0:
+            txt = "Município não existe ou não há nenhum paciente cadastrado"
+            txt = "\n" + txt + "\n"
+
+            print(txt)
+            self.print_menu()
+            self.ask_input()
+
+        if m_count == 0:
+            masc = 'nenhum paciente'
+        else:
+            masc = float(m_sum / m_count)
+
+        if f_count == 0:
+            fem = 'nenhum paciente'
+        else:
+            fem = float(f_sum / f_count)
+
+        total = m_count + f_count
+        geral = float((m_sum + f_sum)/(m_count + f_count))
+
+        txt = "\n" + "Total de pacientes: {0}" + "\n"
+        txt += "Médias de idade:" + "\n"
+        txt += "    femininos:  {1:.2f}" + "\n"
+        txt += "    masculinos: {2:.2f}" + "\n"
+        txt += "    geral:      {3:.2f}" + "\n"
+        txt = txt.format(total, fem, masc, geral)
+        print(txt)
+
+        self.print_menu()
+        self.ask_input()
+
+    def two(self):     # todo
         print("2")
 
-    def three(self):
+    def three(self):     # todo
         print("3")
 
-    def four(self):
+    def four(self):     # todo
         print("4")
 
-    def five(self):
+    def five(self):     # todo
         print("5")
 
     def six(self):
-        print("6")
+        exit()
 
 
 x = Saude()
