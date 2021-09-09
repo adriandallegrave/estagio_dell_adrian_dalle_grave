@@ -3,6 +3,13 @@
 import csv
 
 
+def convert_date(str):
+    # 2020-08-23 to 23/08/2020
+    str = str.strip()
+    result = str[8:] + "/" + str[5:7] + "/" + str[:4]
+    return result
+
+
 class Saude:
     def __init__(self):
         self.info = []
@@ -134,8 +141,49 @@ class Saude:
         self.print_menu()
         self.ask_input()
 
-    def three(self):     # todo
-        print("3")
+    def three(self):
+        result = []
+
+        i = input("Digite o nome do executante: ")
+        i = i.upper()
+
+        for x in self.info:
+            if x['executante'] == i:
+                idade = x['idade']
+                res = x['municipio_residencia']
+                sol = x['solicitante']
+                aut = x['data_autorizacao'][:10]
+                aut = convert_date(aut)
+                intern = x['data_internacao'][:10]
+                intern = convert_date(intern)
+                alta = x['data_alta'][:10]
+                alta = convert_date(alta)
+                execut = x['executante']
+
+                txt = "===========================================" + "\n"
+                txt += "idade: {0}" + "\n"
+                txt += "residência: {1}" + "\n"
+                txt += "solicitante: {2}" + "\n"
+                txt += "data de autorização: {3}" + "\n"
+                txt += "data de internação: {4}" + "\n"
+                txt += "data de alta: {5}" + "\n"
+                txt += "executante: {6}" + "\n"
+                txt = txt.format(idade, res, sol, aut, intern, alta, execut)
+                result.append(txt)
+
+        if len(result) == 0:
+            txt = "Executante não existe ou não há nenhum paciente cadastrado"
+            txt = "\n" + txt + "\n"
+
+            print(txt)
+            self.print_menu()
+            self.ask_input()
+        else:
+            for x in result:
+                print(x)
+
+            self.print_menu()
+            self.ask_input()
 
     def four(self):     # todo
         print("4")
