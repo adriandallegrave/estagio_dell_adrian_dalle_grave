@@ -1,6 +1,7 @@
 # pyinstaller -F yourprogram.py
 
 import csv
+import datetime
 
 
 def convert_date(str):
@@ -8,6 +9,14 @@ def convert_date(str):
     str = str.strip()
     result = str[8:] + "/" + str[5:7] + "/" + str[:4]
     return result
+
+
+def time_delta(a, b):
+    c = datetime.datetime.strptime(a, '%Y-%m-%d %H:%M:%S.%f')
+    d = datetime.datetime.strptime(b, '%Y-%m-%d %H:%M:%S.%f')
+    e = d - c
+
+    return str(e.days)
 
 
 class Saude:
@@ -185,8 +194,43 @@ class Saude:
             self.print_menu()
             self.ask_input()
 
-    def four(self):     # todo
-        print("4")
+    def four(self):
+        executantes = {None}
+        new_list = []
+        txt = ""
+
+        i = input("Digite o nome do solicitante: ")
+        i = i.upper()
+
+        for x in self.info:
+            if x['solicitante'] == i:
+                executantes.add(x['executante'])
+                new_list.append(x)
+
+        for x in executantes:
+            i = 1
+            txt += "===========================================" + "\n"
+            txt += "Hospital executante: {}" + "\n"
+            txt = txt.format(x)
+            for y in new_list:
+                if y['executante'] == x:
+                    z = time_delta(y['data_internacao'], y['data_alta'])
+                    txt += "paciente " + str(i)
+                    txt += " ficou internado por " + str(z) + " dias." + "\n"
+                    i += 1
+
+        if len(executantes) == 0:
+            err = "Solicitante não existe ou não há nenhum paciente cadastrado"
+            err = "\n" + txt + "\n"
+
+            print(err)
+            self.print_menu()
+            self.ask_input()
+        else:
+            print(txt)
+
+            self.print_menu()
+            self.ask_input()
 
     def five(self):     # todo
         print("5")
