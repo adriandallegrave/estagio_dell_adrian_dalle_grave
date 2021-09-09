@@ -97,8 +97,42 @@ class Saude:
         self.print_menu()
         self.ask_input()
 
-    def two(self):     # todo
-        print("2")
+    def two(self):
+        a = b = c = d = 0
+
+        i = input("Digite o nome do município: ")
+        i = i.upper()
+
+        for x in self.info:
+            if x['municipio_residencia'] == i:
+                year = x['data_internacao'][:4]
+                if year == '2018':
+                    a += 1
+                if year == '2019':
+                    b += 1
+                if year == '2020':
+                    c += 1
+                if year == '2021':
+                    d += 1
+
+        if (a + b + c + d) == 0:
+            txt = "Município não existe ou não há nenhum paciente cadastrado"
+            txt = "\n" + txt + "\n"
+
+            print(txt)
+            self.print_menu()
+            self.ask_input()
+
+        txt = "\n" + "Pacientes internados: " + "\n"
+        txt += "2018: {0}" + "\n"
+        txt += "2019: {1}" + "\n"
+        txt += "2020: {2}" + "\n"
+        txt += "2021: {3}" + "\n"
+        txt = txt.format(a, b, c, d)
+        print(txt)
+
+        self.print_menu()
+        self.ask_input()
 
     def three(self):     # todo
         print("3")
