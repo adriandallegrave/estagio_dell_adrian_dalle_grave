@@ -23,23 +23,23 @@ Você como cidadão rio-grandense e por curiosidade resolveu analisar essas inte
 ---------------
 Ao iniciar o programa, deve-se fazer a leitura do arquivo .csv que está sendo enviado junto com esta explicação. Neste arquivo você encontra as informações sobre as internações no Rio Grande do Sul. A partir delas, você deve implementar as seguintes funcionalidades:
 
->1. `Consultar média de idade dos pacientes - ` Permitir que o usuário informe o nome do município residencial e como resultado o programa deverá exibir:
+>1. `Consultar média de idade dos pacientes` - Permitir que o usuário informe o nome do município residencial e como resultado o programa deverá exibir:
 >    - O número total de pacientes do município;
 >    - A média de idade dos pacientes separados por gênero;
 >    - A média de idade de todos os pacientes;
 
->2. `Consultar internações por ano - ` Permitir que o usuário informe o nome do município residencial e como resultado o programa deverá exibir uma lista com os anos de 2018 a 2021 e a quantidade de pacientes que foram internados por ano;
+>2. `Consultar internações por ano` - Permitir que o usuário informe o nome do município residencial e como resultado o programa deverá exibir uma lista com os anos de 2018 a 2021 e a quantidade de pacientes que foram internados por ano;
 
->3. `Consultar hospitais - ` Permitir que o usuário digite o nome do executante e como resultado o programa deverá exibir todos os pacientes que foram internados, sua idade, o município residencial e solicitante de cada um deles, as datas de autorização, de internação e alta e o executante;
+>3. `Consultar hospitais` - Permitir que o usuário digite o nome do executante e como resultado o programa deverá exibir todos os pacientes que foram internados, sua idade, o município residencial e solicitante de cada um deles, as datas de autorização, de internação e alta e o executante;
 
->4. `Calcular tempo de internação - ` Permitir que o usuário digite o nome do solicitante e como resultado o programa deverá exibir:
+>4. `Calcular tempo de internação` - Permitir que o usuário digite o nome do solicitante e como resultado o programa deverá exibir:
 >    - Uma lista com todos os pacientes;
 >    - O nome dos hospitais executantes;
 >    - O número de dias que os pacientes permaneceram internados desde a solicitação até a alta deste paciente;
 
->5. `Determinar tempos de espera na fila - ` O programa deverá determinar e exibir os cinco casos com maior tempo de espera na fila;
+>5. `Determinar tempos de espera na fila` - O programa deverá determinar e exibir os cinco casos com maior tempo de espera na fila;
 
->6. `Terminar o programa - ` Permitir que o usuário saia do programa.
+>6. `Terminar o programa` - Permitir que o usuário saia do programa.
 
 #### Observações:
 ---------------
