@@ -233,13 +233,58 @@ class Saude:
             self.ask_input()
 
     def five(self):     # todo
-        print("5")
+        result = []
+
+        for i in range(5):
+            result.append(self.info[i])
+
+        result = sorted(result, key=lambda k: int(k['horas_na_fila']))
+        for x in self.info:
+            if int(x['horas_na_fila']) > int(result[0]['horas_na_fila']):
+                result.pop(0)
+                i = 0
+                for v in range(4):
+                    b = int(result[v]['horas_na_fila'])
+                    if int(x['horas_na_fila']) > b:
+                        i += 1
+                result.insert(i, x)
+
+        txt = "\n" + (79 * "=") + "\n"
+        for i in result:
+            txt += "Dia de extração: " + convert_date(i['data_extracao'][:10])
+            txt += "\n"
+            txt += "ID do usuario: " + i['id_usuario'] + "\n"
+            txt += "Situação: " + i['situacao'] + "\n"
+            txt += "Central regulação origem: " + i['central_regulacao_origem']
+            txt += "\n"
+            txt += "Data de solicitação: "
+            txt += convert_date(i['data_solicitacao']) + "\n"
+            txt += "Sexo: " + i['sexo'] + "\n"
+            txt += "Idade: " + i['idade'] + "\n"
+            txt += "Município de residência: " + i['municipio_residencia']
+            txt += "\n"
+            txt += "Solicitante: " + i['solicitante'] + "\n"
+            txt += "Município solicitante: " + i['municipio_solicitante']
+            txt += "\n"
+            txt += "Código CID: " + i['codigo_cid'] + "\n"
+            txt += "Caráter: " + i['carater'] + "\n"
+            txt += "Tipo de internação: " + i['tipo_internacao'] + "\n"
+            txt += "Tipo de leito: " + i['tipo_leito'] + "\n"
+            txt += "Data de autorização: "
+            txt += convert_date(i['data_autorizacao'][:10]) + "\n"
+            txt += "Data de internação: "
+            txt += convert_date(i['data_internacao'][:10]) + "\n"
+            txt += "Data de alta: " + convert_date(i['data_alta'][:10]) + "\n"
+            txt += "Executante: " + i['executante'] + "\n"
+            txt += "Horas na fila: " + i['horas_na_fila'] + "\n"
+            txt += (79 * "=") + "\n"
+
+        print(txt)
+        self.print_menu()
+        self.ask_input()
 
     def six(self):
         exit()
 
 
 x = Saude()
-
-y = "end of file"
-print(y)
