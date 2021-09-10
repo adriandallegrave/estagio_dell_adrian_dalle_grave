@@ -1,11 +1,8 @@
-# pyinstaller -F yourprogram.py
-
 import csv
 import datetime
 
 
 def convert_date(str):
-    # 2020-08-23 to 23/08/2020
     str = str.strip()
     result = str[8:] + "/" + str[5:7] + "/" + str[:4]
     return result
@@ -20,8 +17,11 @@ def time_delta(a, b):
 
 
 class Saude:
-    def __init__(self):
+    def __init__(self, menu='', input=''):
         self.info = []
+        self.menu = menu
+        self.input = input
+        self.teste = False
         self.print_start()
         self.get_data()
 
@@ -49,7 +49,10 @@ class Saude:
         print(txt)
 
     def ask_input(self):
-        i = input("Escolha uma das opções e aperte enter: ")
+        if self.menu == '':
+            i = input("Escolha uma das opções e aperte enter: ")
+        else:
+            i = self.menu
         if i == '1':
             self.one()
         elif i == '2':
@@ -69,7 +72,11 @@ class Saude:
     def one(self):
         f_sum = m_sum = m_count = f_count = 0
 
-        i = input("Digite o nome do município: ")
+        if self.input == '':
+            i = input("Digite o nome do município: ")
+        else:
+            i = self.input
+
         i = i.upper()
 
         for x in self.info:
@@ -86,8 +93,11 @@ class Saude:
             txt = "\n" + txt + "\n"
 
             print(txt)
-            self.print_menu()
-            self.ask_input()
+            if self.menu != '':
+                self.six()
+            else:
+                self.print_menu()
+                self.ask_input()
 
         if m_count == 0:
             masc = 'nenhum paciente'
@@ -110,13 +120,22 @@ class Saude:
         txt = txt.format(total, fem, masc, geral)
         print(txt)
 
-        self.print_menu()
-        self.ask_input()
+        self.teste = True
+
+        if self.menu != '':
+            self.six()
+        else:
+            self.print_menu()
+            self.ask_input()
 
     def two(self):
         a = b = c = d = 0
 
-        i = input("Digite o nome do município: ")
+        if self.input == '':
+            i = input("Digite o nome do município: ")
+        else:
+            i = self.input
+
         i = i.upper()
 
         for x in self.info:
@@ -136,8 +155,12 @@ class Saude:
             txt = "\n" + txt + "\n"
 
             print(txt)
-            self.print_menu()
-            self.ask_input()
+
+            if self.menu != '':
+                self.six()
+            else:
+                self.print_menu()
+                self.ask_input()
 
         txt = "\n" + "Pacientes internados: " + "\n"
         txt += "2018: {0}" + "\n"
@@ -147,13 +170,20 @@ class Saude:
         txt = txt.format(a, b, c, d)
         print(txt)
 
-        self.print_menu()
-        self.ask_input()
+        if self.menu != '':
+            self.six()
+        else:
+            self.print_menu()
+            self.ask_input()
 
     def three(self):
         result = []
 
-        i = input("Digite o nome do executante: ")
+        if self.input == '':
+            i = input("Digite o nome do executante: ")
+        else:
+            i = self.input
+
         i = i.upper()
 
         for x in self.info:
@@ -185,21 +215,32 @@ class Saude:
             txt = "\n" + txt + "\n"
 
             print(txt)
-            self.print_menu()
-            self.ask_input()
+
+            if self.menu != '':
+                self.six()
+            else:
+                self.print_menu()
+                self.ask_input()
         else:
             for x in result:
                 print(x)
 
-            self.print_menu()
-            self.ask_input()
+            if self.menu != '':
+                self.six()
+            else:
+                self.print_menu()
+                self.ask_input()
 
     def four(self):
         executantes = {None}
         new_list = []
         txt = ""
 
-        i = input("Digite o nome do solicitante: ")
+        if self.input == '':
+            i = input("Digite o nome do solicitante: ")
+        else:
+            i = self.input
+
         i = i.upper()
 
         for x in self.info:
@@ -224,15 +265,22 @@ class Saude:
             err = "\n" + txt + "\n"
 
             print(err)
-            self.print_menu()
-            self.ask_input()
+
+            if self.menu != '':
+                self.six()
+            else:
+                self.print_menu()
+                self.ask_input()
         else:
             print(txt)
 
-            self.print_menu()
-            self.ask_input()
+            if self.menu != '':
+                self.six()
+            else:
+                self.print_menu()
+                self.ask_input()
 
-    def five(self):     # todo
+    def five(self):
         result = []
 
         for i in range(5):
@@ -280,11 +328,12 @@ class Saude:
             txt += (79 * "=") + "\n"
 
         print(txt)
-        self.print_menu()
-        self.ask_input()
+
+        if self.menu != '':
+            self.six()
+        else:
+            self.print_menu()
+            self.ask_input()
 
     def six(self):
-        exit()
-
-
-x = Saude()
+        pass
