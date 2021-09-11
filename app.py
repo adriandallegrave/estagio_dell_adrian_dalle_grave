@@ -3,12 +3,14 @@ import datetime
 
 
 def convert_date(str):
+    # Helper function. Converts 2018-05-02 to 02/05/2018
     str = str.strip()
     result = str[8:] + "/" + str[5:7] + "/" + str[:4]
     return result
 
 
 def time_delta(a, b):
+    # Calculates difference between 2 dates
     c = datetime.datetime.strptime(a, '%Y-%m-%d %H:%M:%S.%f')
     d = datetime.datetime.strptime(b, '%Y-%m-%d %H:%M:%S.%f')
     e = d - c
@@ -18,6 +20,7 @@ def time_delta(a, b):
 
 class Saude:
     def __init__(self, menu='', input=''):
+        # When args are filled tests can be made
         self.info = []
         self.menu = menu
         self.input = input
@@ -26,6 +29,7 @@ class Saude:
         self.get_data()
 
     def get_data(self):
+        # Opens and store csv data into self.info
         csvfile = open('gerint_solicitacoes_mod.csv', 'r')
         reader = csv.DictReader(csvfile, delimiter=";")
         for row in reader:
